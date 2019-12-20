@@ -48,6 +48,7 @@ static struct delayed_work prim_panel_work;
 static atomic_t prim_panel_is_on;
 static struct wakeup_source prim_panel_wakelock;
 
+bool panel_init_judge;
 static void convert_to_dsi_mode(const struct drm_display_mode *drm_mode,
 				struct dsi_display_mode *dsi_mode)
 {
@@ -316,6 +317,7 @@ static void dsi_bridge_disable(struct drm_bridge *bridge)
 	if (display && display->drm_conn)
 		sde_connector_helper_bridge_disable(display->drm_conn);
 
+	panel_init_judge = false;
 	rc = dsi_display_pre_disable(c_bridge->display);
 	if (rc) {
 		pr_err("[%d] DSI display pre disable failed, rc=%d\n",
@@ -357,16 +359,26 @@ static void dsi_bridge_post_disable(struct drm_bridge *bridge)
 		atomic_set(&prim_panel_is_on, false);
 }
 
-#if (defined CONFIG_TOUCHSCREEN_XIAOMI_C3J)
-extern int nvt_ts_recovery_callback(void);
+#if (defined CONFIG_TOUCHSCREEN_AAAAAA_BBB) || (defined CONFIG_TOUCHSCREEN_AAAAAA_CCC)
+typedef int(*touchpanel_recovery_cb_p_t)(void);
+static touchpanel_recovery_cb_p_t touchpanel_recovery_cb_p = NULL;
+int set_touchpanel_recovery_callback(touchpanel_recovery_cb_p_t cb)
+{
+	if (IS_ERR_OR_NULL(cb))
+		return -1;
+	touchpanel_recovery_cb_p = cb;
+	return 0;
+}
+EXPORT_SYMBOL(set_touchpanel_recovery_callback);
 #endif
 
 static void prim_panel_off_delayed_work(struct work_struct *work)
 {
 	mutex_lock(&gbridge->base.lock);
 	if (atomic_read(&prim_panel_is_on)) {
-#if (defined CONFIG_TOUCHSCREEN_XIAOMI_C3J)
-		nvt_ts_recovery_callback();
+#if (defined CONFIG_TOUCHSCREEN_AAAAAA_BBB) || (defined CONFIG_TOUCHSCREEN_AAAAAA_CCC)
+		if (!IS_ERR_OR_NULL(touchpanel_recovery_cb_p))
+			touchpanel_recovery_cb_p();
 #endif
 		dsi_bridge_post_disable(&gbridge->base);
 		__pm_relax(&prim_panel_wakelock);

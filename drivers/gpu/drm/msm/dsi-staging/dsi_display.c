@@ -46,7 +46,7 @@
 #define MAX_TE_SOURCE_ID  2
 
 static struct dsi_display *whitep_display;
-#if (defined CONFIG_TOUCHSCREEN_XIAOMI_C3J) || (defined CONFIG_TOUCHSCREEN_XIAOMI_C3X)
+#if (defined CONFIG_TOUCHSCREEN_AAAAAA_BBB) || (defined CONFIG_TOUCHSCREEN_AAAAAA_CCC)
 extern char g_lcd_id[128];
 //Update /proc/tp_info & /proc/tp_lockdown_info node
 extern void update_lct_tp_info(char *tp_info_buf, char *tp_lockdown_info_buf);
@@ -96,11 +96,6 @@ static int dsi_display_config_clk_gating(struct dsi_display *display,
 	if (!display) {
 		pr_err("Invalid params\n");
 		return -EINVAL;
-	}
-
-	if (display->panel->host_config.force_hs_clk_lane) {
-		pr_debug("no dsi clock gating for continuous clock mode\n");
-		return 0;
 	}
 
 	mctrl = &display->ctrl[display->clk_master_idx];
@@ -649,9 +644,9 @@ static void dsi_display_parse_te_data(struct dsi_display *display)
 
 static char dcs_cmd[2] = {0x00, 0x00}; /* DTYPE_DCS_READ */
 static struct dsi_cmd_desc dcs_read_cmd = {
-       {0, 6, MIPI_DSI_MSG_REQ_ACK, 0, 5, sizeof(dcs_cmd), dcs_cmd, 0, 0},
-       1,
-       5,
+	{0, 6, MIPI_DSI_MSG_REQ_ACK, 0, 5, sizeof(dcs_cmd), dcs_cmd, 0, 0},
+	1,
+	5,
 };
 
 static int dsi_display_read_reg(struct dsi_display_ctrl *ctrl, char cmd0,
@@ -696,7 +691,7 @@ static int dsi_display_read_reg(struct dsi_display_ctrl *ctrl, char cmd0,
 	return rc;
  }
 
-#if (defined CONFIG_TOUCHSCREEN_XIAOMI_C3J) || (defined CONFIG_TOUCHSCREEN_XIAOMI_C3X)
+#if (defined CONFIG_TOUCHSCREEN_AAAAAA_BBB) || (defined CONFIG_TOUCHSCREEN_AAAAAA_CCC)
 static char dcs_cmd_page[2] = {0x00, 0x00}; /* DTYPE_DCS_READ */
 static struct dsi_cmd_desc dcs_read_cmd_page = {
        {0, 0x15, MIPI_DSI_MSG_REQ_ACK, 0, 5, sizeof(dcs_cmd_page), dcs_cmd_page, 0, 0},
@@ -1251,9 +1246,6 @@ static ssize_t debugfs_dump_info_read(struct file *file,
 	len += snprintf(buf + len, (SZ_4K - len),
 			"\tClock master = %s\n",
 			display->ctrl[display->clk_master_idx].ctrl->name);
-
-	if (len > user_len)
-		len = user_len;
 
 	if (copy_to_user(user_buf, buf, len)) {
 		kfree(buf);
@@ -5063,7 +5055,6 @@ static ssize_t dsi_display_set_cabc_still(struct device *dev,struct device_attri
 		return rc;
 	}
 
-//        pr_info("xinj:_###_%s,set_cabc_still_cmd: %d\n",__func__, param);
 	switch(param) {
 		case 0x1: //cabc_still on
 			dsi_panel_set_feature(display->panel, DSI_CMD_SET_CABC_STILL_ON);
@@ -5098,9 +5089,9 @@ static ssize_t dsi_display_set_hbm(struct device *dev,struct device_attribute *a
 	}
 
 	switch(param) {
-		case 0x1: //hbm1 on
-			dsi_panel_set_feature(display->panel, DSI_CMD_SET_HBM1_ON);    
-			break;
+	case 0x1: //hbm1 on
+		dsi_panel_set_feature(display->panel, DSI_CMD_SET_HBM1_ON);
+		break;
 		case 0x2: //hbm2 on
 			dsi_panel_set_feature(display->panel, DSI_CMD_SET_HBM2_ON);
 			break;
@@ -5110,7 +5101,7 @@ static ssize_t dsi_display_set_hbm(struct device *dev,struct device_attribute *a
 		case 0x0://hbm off
 			dsi_panel_set_feature(display->panel, DSI_CMD_SET_HBM_OFF);
 			break;
-			default:
+		default:
 			pr_err("unknow cmds: %d\n", param);
 		break;
 	}
@@ -5177,7 +5168,7 @@ static ssize_t dsi_display_get_whitepoint(struct device *dev,
 
 	ctrl = &display->ctrl[display->cmd_master_idx];
 
-#if (defined CONFIG_TOUCHSCREEN_XIAOMI_C3J) || (defined CONFIG_TOUCHSCREEN_XIAOMI_C3X)
+#if (defined CONFIG_TOUCHSCREEN_AAAAAA_BBB) || (defined CONFIG_TOUCHSCREEN_AAAAAA_CCC)
 	if((strstr(g_lcd_id, "huaxing")!= NULL)) {
 		rc = dsi_display_write_reg_page(ctrl, 0x00, 0x60, buf, sizeof(buf));
 		rc = dsi_display_read_reg(ctrl, 0xf4, 0x00, buf, sizeof(buf));
@@ -5295,7 +5286,7 @@ static int dsi_display_sysfs_deinit(struct dsi_display *display)
 
 }
 
-#if (defined CONFIG_TOUCHSCREEN_XIAOMI_C3J) || (defined CONFIG_TOUCHSCREEN_XIAOMI_C3X)
+#if (defined CONFIG_TOUCHSCREEN_AAAAAA_BBB) || (defined CONFIG_TOUCHSCREEN_AAAAAA_CCC)
 int lct_tp_lockdown_info_callback(void)
 {
 	static bool is_already_read = false;
@@ -5348,8 +5339,8 @@ int lct_tp_lockdown_info_callback(void)
 		goto exit;
 	}
 
-	rc = snprintf(buf, PAGE_SIZE, "%02X%02X%02X%02X%02X%02X%02X%02X\n", buf[0], buf[1], buf[2],
-			buf[3], buf[4], buf[5], buf[6], buf[7]);
+	rc = snprintf(buf, PAGE_SIZE, "%02X%02X%02X%02X%02X%02X%02X%02X\n",buf[0],buf[1],buf[2],
+			buf[3],buf[4],buf[5],buf[6],buf[7]);
 
 	update_lct_tp_info(NULL, buf);
 	is_already_read = true;
@@ -5586,7 +5577,7 @@ static int dsi_display_bind(struct device *dev,
 
 	dsi_display_feature_create_sysfs(display);
 	dsi_display_whitepoint_create_sysfs();
-#if (defined CONFIG_TOUCHSCREEN_XIAOMI_C3J) || (defined CONFIG_TOUCHSCREEN_XIAOMI_C3X)
+#if (defined CONFIG_TOUCHSCREEN_AAAAAA_BBB) || (defined CONFIG_TOUCHSCREEN_AAAAAA_CCC)
 	set_lct_tp_lockdown_info_callback(lct_tp_lockdown_info_callback);
 #endif
 	goto error;
