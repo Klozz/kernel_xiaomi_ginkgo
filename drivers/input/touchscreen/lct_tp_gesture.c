@@ -1,8 +1,6 @@
 /****************************************************************************************
  *
  * @File Name   : lct_tp_gesture.c
- * @Author      : wanghan
- * @E-mail      : <wanghan@longcheer.com>
  * @Create Time : 2018-09-30 17:34:43
  * @Description : Enable/Disable touchpad.
  *
@@ -27,7 +25,7 @@
  */
 #define TP_GESTURE_NAME          "tp_gesture"
 #define TP_GESTURE_LOG_ENABLE
-#define TP_GESTURE_TAG           "LCT_TP_GESTURE"
+#define TP_GESTURE_TAG           "GGG_TP_GESTURE"
 
 #ifdef TP_GESTURE_LOG_ENABLE
 #define TP_LOGW(log, ...) printk(KERN_WARNING "[%s] %s (line %d): " log, TP_GESTURE_TAG, __func__, __LINE__, ##__VA_ARGS__)

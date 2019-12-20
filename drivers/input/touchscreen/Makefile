@@ -14,6 +14,22 @@ obj-$(CONFIG_TOUCHSCREEN_XIAOMI_C3J) += lct_tp_work.o
 obj-$(CONFIG_TOUCHSCREEN_XIAOMI_C3J) += nt36xxx_spi_c3j/
 obj-$(CONFIG_TOUCHSCREEN_XIAOMI_C3J) += ft8719_spi_c3j/
 
+obj-$(CONFIG_TOUCHSCREEN_AAAAAA_BBB) += lct_tp_info.o
+obj-$(CONFIG_TOUCHSCREEN_AAAAAA_BBB) += lct_tp_selftest.o
+obj-$(CONFIG_TOUCHSCREEN_AAAAAA_BBB) += lct_tp_gesture.o
+obj-$(CONFIG_TOUCHSCREEN_AAAAAA_BBB) += lct_tp_grip_area.o
+obj-$(CONFIG_TOUCHSCREEN_AAAAAA_BBB) += lct_tp_work.o
+obj-$(CONFIG_TOUCHSCREEN_AAAAAA_BBB) += nt36xxx_spi_bbb/
+obj-$(CONFIG_TOUCHSCREEN_AAAAAA_BBB) += ft8719_spi_bbb/
+
+
+obj-$(CONFIG_TOUCHSCREEN_AAAAAA_CCC) += lct_tp_info.o
+obj-$(CONFIG_TOUCHSCREEN_AAAAAA_CCC) += lct_tp_selftest.o
+obj-$(CONFIG_TOUCHSCREEN_AAAAAA_CCC) += lct_tp_gesture.o
+obj-$(CONFIG_TOUCHSCREEN_AAAAAA_CCC) += lct_tp_grip_area.o
+obj-$(CONFIG_TOUCHSCREEN_AAAAAA_CCC) += lct_tp_work.o
+obj-$(CONFIG_TOUCHSCREEN_AAAAAA_CCC) += nt36xxx_spi_ccc/
+
 wm97xx-ts-y := wm97xx-core.o
 
 obj-$(CONFIG_TOUCHSCREEN_PROPERTIES)	+= of_touchscreen.o

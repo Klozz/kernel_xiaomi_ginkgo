@@ -1,8 +1,6 @@
 /****************************************************************************************
  *
  * @File Name   : lct_tp_work.c
- * @Author      : wanghan
- * @E-mail      : <wanghan@longcheer.com>
  * @Create Time : 2018-09-30 17:34:43
  * @Description : Enable/Disable touchpad.
  *
@@ -27,7 +25,7 @@
  */
 #define TP_WORK_NAME          "tp_work"
 #define TP_WORK_LOG_ENABLE
-#define TP_WORK_TAG           "LCT_TP_WORK"
+#define TP_WORK_TAG           "GGG_TP_WORK"
 
 #ifdef TP_WORK_LOG_ENABLE
 #define TP_LOGW(log, ...) printk(KERN_WARNING "[%s] %s (line %d): " log, TP_WORK_TAG, __func__, __LINE__, ##__VA_ARGS__)

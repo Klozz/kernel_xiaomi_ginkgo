@@ -1,8 +1,6 @@
 /****************************************************************************************
  *
  * @File Name   : lct_tp_grip_area.c
- * @Author      : wanghan
- * @E-mail      : <wanghan@longcheer.com>
  * @Create Time : 2018-08-17 17:34:43
  * @Description : Display touchpad information.
  *
@@ -26,7 +24,7 @@
  */
 #define TP_GRIP_AREA_NAME          "tp_grip_area"
 #define TP_GRIP_AREA_LOG_ENABLE
-#define TP_GRIP_AREA_TAG           "LCT_TP_GRIP_AREA"
+#define TP_GRIP_AREA_TAG           "GGG_TP_GRIP_AREA"
 
 #ifdef TP_GRIP_AREA_LOG_ENABLE
 #define TP_LOGW(log, ...) printk(KERN_WARNING "[%s] %s (line %d): " log, TP_GRIP_AREA_TAG, __func__, __LINE__, ##__VA_ARGS__)

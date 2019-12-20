@@ -26,20 +26,20 @@
 #define TP_SELF_TEST_RESULT_FAIL         "1\n"
 #define TP_SELF_TEST_RESULT_PASS         "2\n"
 
-#define TP_SELF_TEST_LONGCHEER_MMI_CMD   "mmi"
-#define TP_SELF_TEST_XIAOMI_I2C_CMD      "i2c"
-#define TP_SELF_TEST_XIAOMI_OPEN_CMD     "open"
-#define TP_SELF_TEST_XIAOMI_SHORT_CMD    "short"
+#define TP_SELF_TEST_FFFF_MMI_CMD   "mmi"
+#define TP_SELF_TEST_AAAAAA_I2C_CMD      "i2c"
+#define TP_SELF_TEST_AAAAAA_OPEN_CMD     "open"
+#define TP_SELF_TEST_AAAAAA_SHORT_CMD    "short"
 
 enum lct_tp_selftest_cmd {
-	TP_SELFTEST_CMD_LONGCHEER_MMI = 0x00,
-	TP_SELFTEST_CMD_XIAOMI_I2C = 0x01,
-	TP_SELFTEST_CMD_XIAOMI_OPEN = 0x02,
-	TP_SELFTEST_CMD_XIAOMI_SHORT = 0x03,
+	TP_SELFTEST_CMD_FFFF_MMI = 0x00,
+	TP_SELFTEST_CMD_AAAAAA_I2C = 0x01,
+	TP_SELFTEST_CMD_AAAAAA_OPEN = 0x02,
+	TP_SELFTEST_CMD_AAAAAA_SHORT = 0x03,
 };
 
 // Debug log
-#define TP_INFO_TAG           "LCT_TP_SELFTEST"
+#define TP_INFO_TAG           "GGG_TP_SELFTEST"
 #define TP_INFO_LOG_ENABLE
 
 #ifdef TP_INFO_LOG_ENABLE
@@ -82,30 +82,30 @@ static ssize_t tp_selftest_proc_write(struct file *file, const char __user *buf,
 		return -EFAULT;
 	}
 
-	if( (strncmp(tmp_data, TP_SELF_TEST_LONGCHEER_MMI_CMD, strlen(TP_SELF_TEST_LONGCHEER_MMI_CMD)) == 0)
+	if( (strncmp(tmp_data, TP_SELF_TEST_FFFF_MMI_CMD, strlen(TP_SELF_TEST_FFFF_MMI_CMD)) == 0)
 			&& (!is_in_self_test)) { //mmi
 
-		TP_LOGW("Longcheer MMI TP self-test ...\n");
-		lct_tp_selftest_cmd = TP_SELFTEST_CMD_LONGCHEER_MMI;
+		TP_LOGW("MMI TP self-test ...\n");
+		lct_tp_selftest_cmd = TP_SELFTEST_CMD_FFFF_MMI;
 
-	} else if ((strncmp(tmp_data, TP_SELF_TEST_XIAOMI_I2C_CMD, strlen(TP_SELF_TEST_XIAOMI_I2C_CMD)) == 0)
+	} else if ((strncmp(tmp_data, TP_SELF_TEST_AAAAAA_I2C_CMD, strlen(TP_SELF_TEST_AAAAAA_I2C_CMD)) == 0)
 			&& (!is_in_self_test)) { //i2c
 
-		TP_LOGW("Xiaomi TP i2c self-test ...\n");
-		lct_tp_selftest_cmd = TP_SELFTEST_CMD_XIAOMI_I2C;
+		TP_LOGW("aaaaaa TP i2c self-test ...\n");
+		lct_tp_selftest_cmd = TP_SELFTEST_CMD_AAAAAA_I2C;
 
 
-	} else if ((strncmp(tmp_data, TP_SELF_TEST_XIAOMI_OPEN_CMD, strlen(TP_SELF_TEST_XIAOMI_OPEN_CMD)) == 0)
+	} else if ((strncmp(tmp_data, TP_SELF_TEST_AAAAAA_OPEN_CMD, strlen(TP_SELF_TEST_AAAAAA_OPEN_CMD)) == 0)
 			&& (!is_in_self_test)) { //open
 
-		TP_LOGW("Xiaomi TP open self-test ...\n");
-		lct_tp_selftest_cmd = TP_SELFTEST_CMD_XIAOMI_OPEN;
+		TP_LOGW("aaaaaa TP open self-test ...\n");
+		lct_tp_selftest_cmd = TP_SELFTEST_CMD_AAAAAA_OPEN;
 
-	} else if ((strncmp(tmp_data, TP_SELF_TEST_XIAOMI_SHORT_CMD, strlen(TP_SELF_TEST_XIAOMI_SHORT_CMD)) == 0)
+	} else if ((strncmp(tmp_data, TP_SELF_TEST_AAAAAA_SHORT_CMD, strlen(TP_SELF_TEST_AAAAAA_SHORT_CMD)) == 0)
 			&& (!is_in_self_test)) { //short
 
-		TP_LOGW("Xiaomi TP short self-test ...\n");
-		lct_tp_selftest_cmd = TP_SELFTEST_CMD_XIAOMI_SHORT;
+		TP_LOGW("aaaaaa TP short self-test ...\n");
+		lct_tp_selftest_cmd = TP_SELFTEST_CMD_AAAAAA_SHORT;
 
 	} else {
 

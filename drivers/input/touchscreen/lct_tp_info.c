@@ -1,8 +1,6 @@
 /****************************************************************************************
  *
  * @File Name   : lct_tp_info.c
- * @Author      : wanghan
- * @E-mail      : <wanghan@longcheer.com>
  * @Create Time : 2018-08-17 17:34:43
  * @Description : Display touchpad information.
  *
@@ -27,8 +25,8 @@
 #define TP_INFO_NAME          "tp_info"
 #define TP_LOCKDOWN_INFO_NAME "tp_lockdown_info"
 #define TP_INFO_LOG_ENABLE
-#define TP_INFO_TAG           "LCT_TP_INFO"
-#define LCT_STRING_SIZE       128
+#define TP_INFO_TAG           "GGG_TP_INFO"
+#define GGG_STRING_SIZE       128
 #define TP_CALLBACK_CMD_INFO      "CMD_INFO"
 #define TP_CALLBACK_CMD_LOCKDOWN  "CMD_LOCKDOWN"
 
@@ -46,8 +44,8 @@
  */
 typedef struct lct_tp{
 	struct kobject *tp_device;
-	char tp_info_buf[LCT_STRING_SIZE];
-	char tp_lockdown_info_buf[LCT_STRING_SIZE];
+	char tp_info_buf[GGG_STRING_SIZE];
+	char tp_lockdown_info_buf[GGG_STRING_SIZE];
 	struct proc_dir_entry *proc_entry_tp_info;
 	struct proc_dir_entry *proc_entry_tp_lockdown_info;
 	int (*pfun_info_cb)(const char *);
